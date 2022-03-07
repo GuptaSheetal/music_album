@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => LoginScreen()));
       });
@@ -23,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
         child:BackdropFilter(
@@ -32,19 +33,19 @@ class _SplashScreenState extends State<SplashScreen> {
               children: [
                 Expanded(
                   child: Container()),
-                  const CircleAvatar(
-                    radius: 70,
+                  CircleAvatar(
+                    radius: (screenwidth/2.76)/2,
                     backgroundColor: Colors.transparent,
-                    backgroundImage: AssetImage("assets/images/app_logo.png"),
+                    backgroundImage: const AssetImage("assets/images/app_logo.png"),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text(
+                  Text(
                     "Task Manager",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: screenwidth/20.7,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
