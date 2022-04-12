@@ -1,77 +1,76 @@
 class Songs {
   final String songName;
-  final String artist;
-  final String image;
-  final String time;
-  final String songPath;
-  final int id;
+  final String songArtist;
+  final String songImage;
+  final String songTime;
+  final String songAudio;
+  final int songId;
 
   Songs(
-     {required this.artist, 
+     {required this.songArtist, 
      required this.songName, 
-     required this.image,
-     required this.songPath, 
-     required this.time,
-     required this.id});
-
+     required this.songImage,
+     required this.songAudio, 
+     required this.songTime,
+     required this.songId});
     
 }
 List<Songs> songs = [
   Songs(
     songName : "Chaka Chak", 
-    artist: "Shreya Ghoshal", 
-    image: "assets/images/songs/chaka_chak.jpg", 
-    songPath: "music/chaka_chak.mp3", 
-    time: "3:30",
-    id: 1
+    songArtist: "Shreya Ghoshal", 
+    songImage: "assets/images/songs/chaka_chak.jpg", 
+    songAudio: "music/chaka_chak.mp3", 
+    songTime: "3:30",
+    songId: 1
   ),
   Songs(
     songName : "Bulleya", 
-    artist: "Pritam Chakraborty", 
-    image: "assets/images/songs/bulleya.jpg",
-    songPath: "music/bulleya.mp3",  
-    time: "4:30",
-    id: 2
+    songArtist: "Pritam Chakraborty", 
+    songImage: "assets/images/songs/bulleya.jpg",
+    songAudio: "music/bulleya.mp3",  
+    songTime: "4:30",
+    songId: 2
   ),
   Songs(
     songName : "Kamli", 
-    artist: "Sunidhi Chauhan", 
-    image: "assets/images/songs/kamli.jpg",
-    songPath: "music/kamli.mp3",  
-    time: "4:00",
-    id: 3
+    songArtist: "Sunidhi Chauhan", 
+    songImage: "assets/images/songs/kamli.jpg",
+    songAudio: "music/kamli.mp3",  
+    songTime: "4:00",
+    songId: 3
   ),
   Songs(
     songName : "Kusu Kusu", 
-    artist: "Zahrah S Khan", 
-    image: "assets/images/songs/kusu_kusu.jpg",
-    songPath: "music/kusu_kusu.mp3", 
-    time: "5:30",
-    id: 4
+    songArtist: "Zahrah S Khan", 
+    songImage: "assets/images/songs/kusu_kusu.jpg",
+    songAudio: "music/kusu_kusu.mp3", 
+    songTime: "5:30",
+    songId: 4
   ),
   Songs(
     songName : "Lut Gaye", 
-    artist: "Jubin Nautiyal", 
-    image: "assets/images/songs/lut_gaye.jpg",
-    songPath: "music/lut_gaye.mp3", 
-    time: "5:00",
-    id: 5
+    songArtist: "Jubin Nautiyal", 
+    songImage: "assets/images/songs/lut_gaye.jpg",
+    songAudio: "music/lut_gaye.mp3", 
+    songTime: "5:00",
+    songId: 5
   ),
   Songs(
     songName : "Param Sundari", 
-    artist: "Shreya Ghoshal", 
-    image: "assets/images/songs/param_sundari.jpg",
-    songPath: "music/param_sundari.mp3", 
-    time: "3:30",
-    id: 6
+    songArtist: "Shreya Ghoshal", 
+    songImage: "assets/images/songs/param_sundari.jpg",
+    songAudio: "music/param_sundari.mp3", 
+    songTime: "3:30",
+    songId: 6
   ),
   Songs(
     songName : "Srivalli", 
-    artist: "Javed Ali", 
-    image: "assets/images/songs/srivalli.jpg",
-    songPath: "music/srivalli.mp3", 
-    time: "4:10",
-    id: 7
+    songArtist: "Javed Ali", 
+    songImage: "assets/images/songs/srivalli.jpg",
+    songAudio: "music/srivalli.mp3", 
+    songTime: "4:10",
+    songId: 7
   ),
 ];
 

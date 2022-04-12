@@ -2,20 +2,21 @@ import 'package:audioplayers/audioplayers.dart';
 //import 'package:audioplayers_with_rate/audioplayers.dart';
 import 'package:first_app/constants/constants.dart';
 import 'package:first_app/screens/audio_file/audio_file.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class PlayerScreen extends StatefulWidget {
-  int id;
+  int songId;
   String songImage;
   String songName;
-  String artistName;
+  String songArtist;
   String songPath;
   PlayerScreen({
     Key? key, 
-    required this.id, 
+    required this.songId, 
     required this.songImage,
     required this.songName,
-    required this.artistName, 
+    required this.songArtist, 
     required this.songPath}) 
     : super(key: key);
 
@@ -155,7 +156,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 SizedBox(
                   height: screenwidth/60,
                 ),
-                Text(widget.artistName,
+                Text(widget.songArtist,
                 style: TextStyle(
                   fontSize: screenwidth/22.83,
                   fontWeight: FontWeight.w500,

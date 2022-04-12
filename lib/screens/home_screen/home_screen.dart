@@ -1,7 +1,12 @@
 import 'dart:core';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first_app/constants/constants.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:first_app/screens/home_screen/sub_screens/build_playlist.dart';
+import 'package:first_app/screens/home_screen/sub_screens/side_bar_item.dart';
 import 'package:first_app/screens/player_screen/player_screen.dart';
+import 'package:first_app/services/playlist_services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:first_app/models/playlist.dart';
 import 'package:first_app/models/songs.dart';
@@ -19,7 +24,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-final tabs = ['Home', 'TV', 'Radio', 'Notification'];
+//final tabs = ['Home', 'TV', 'Radio', 'Notification'];
 
 class _HomeScreenState extends State<HomeScreen> {
   final _drawerController = ZoomDrawerController();
@@ -28,20 +33,16 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedPosition = 0;
 
   void _handleMenuButtonPressed() {
-    // NOTICE: Manage Advanced Drawer state through the Controller.
-    // _advancedDrawerController.value = AdvancedDrawerValue.visible();
     _advancedDrawerController.showDrawer();
   }
 
-// @override
-//   void initState() {
-//     Future.delayed(
-//         Duration.zero,
-//         () => context._build
-//     super.initState();
-//   }
+  PlaylistServices playlistServices = PlaylistServices();
 
-  // int currentIndex = 1;
+@override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
@@ -52,28 +53,18 @@ class _HomeScreenState extends State<HomeScreen> {
       animationDuration: const Duration(milliseconds: 300),
       animateChildDecoration: true,
       rtlOpening: false,
-      // openScale: 1.0,
       disabledGestures: false,
-      childDecoration: const BoxDecoration(
-        // NOTICE: Uncomment if you want to add shadow behind the page.
-        // Keep in mind that it may cause animation jerks.
-        // boxShadow: <BoxShadow>[
-        //   BoxShadow(
-        //     color: Colors.black12,
-        //     blurRadius: 0.0,
-        //   ),
-        // ],
+      childDecoration: BoxDecoration(       
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       drawer: SafeArea(
         child: Container(
           child: ListTileTheme(
-            textColor: Colors.black38,
-            iconColor: Colors.black38,
+            // textColor: Colors.black,
+            // iconColor: Colors.black,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                // SingleChildScrollView(
                 Container(
                   margin: EdgeInsets.fromLTRB(
                       0, screenwidth / 5.74, 110, screenwidth / 7.94),
@@ -87,16 +78,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     leading: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage("assets/images/arrow.jpg"),
-                          fit: BoxFit.fill,
+                          image: AssetImage("assets/images/side_bar.jpg"),
+                          fit: BoxFit.cover,
                         ),
                         borderRadius:
-                            BorderRadius.circular(screenwidth / 18.75),
+                            BorderRadius.circular(screenwidth / 11.02),
                       ),
                       height: screenwidth / 11.02,
-                      width: screenwidth / 9.61,
+                      width: screenwidth / 11.02,
                     ),
-                    title: Text("AF Shinchan",
+                    title: Text("Shinchan",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -120,123 +111,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-                  // Container(
-                  //   //  child: Image(
-                  //   //    image: AssetImage("assets/images/splash_image1.png"),
-
-                  //   //   ),
-                  //   decoration: BoxDecoration(
-
-                  //     color: Colors.blue,
-                  //     borderRadius: BorderRadius.circular(screenwidth/18.75),
-                  //   ),
-                  //   height: screenwidth/11.02,
-                  //   width: screenwidth/9.61,
-                  // )
-                  // ),
                   height: screenwidth / 5.95,
                   width: screenwidth / 1.20,
                 ),
-
-                //Container(
-                ListTile(
-                  onTap: () {},
-                  leading: Icon(
-                    Icons.home,
-                    //color: Colors.black38
-                  ),
-                  title: Text(
-                    'Home',
-                    // style: TextStyle(
-                    //   color: Colors.black38),
-                  ),
-                ),
-
-                ListTile(
-                  onTap: () {},
-                  leading: Icon(
-                    Icons.account_circle_rounded,
-                    //color: Colors.black38
-                  ),
-                  title: Text(
-                    'Profile',
-                    // style: TextStyle(
-                    //     color: Colors.black38),
-                  ),
-                ),
-                ListTile(
-                  onTap: () {},
-                  leading: Icon(
-                    Icons.favorite,
-                    //color: Colors.black38
-                  ),
-                  title: Text(
-                    'Favourites',
-                    // style: TextStyle(
-                    //     color: Colors.black38),
-                  ),
-                ),
-                ListTile(
-                  onTap: () {},
-                  leading: Icon(
-                    Icons.settings,
-                    //color: Colors.black38
-                  ),
-                  title: Text(
-                    'Settings',
-                    // style: TextStyle(
-                    //     color: Colors.black38),
-                  ),
-                ),
-                // ListTile(
-                //   onTap: () {},
-                //   leading: Icon(Icons.settings),
-                //   title: Text('Settings'),
-                // ),
-                // ListTile(
-                //   onTap: () {},
-                //   leading: Icon(Icons.settings),
-                //   title: Text('Settings'),
-                // ),
-                // ListTile(
-                //   onTap: () {},
-                //   leading: Icon(Icons.settings),
-                //   title: Text('Settings'),
-                // ),
-                // ListTile(
-                //   onTap: () {},
-                //   leading: Icon(Icons.settings),
-                //   title: Text('Settings'),
-                // ),
-                //),
-                SizedBox(
-                  height: screenwidth / 3.125,
-                ),
-                //Spacer(),
-                ListTile(
-                  onTap: () {},
-                  leading: Icon(
-                    Icons.logout,
-                    //color: Colors.blue
-                  ),
-                  title: Text(
-                    'Sign Out',
-                    // style: TextStyle(
-                    //     color: Colors.black38),
-                  ),
-                ),
-                // DefaultTextStyle(
-                //   style: TextStyle(
-                //     fontSize: 12,
-                //     color: Colors.white54,
-                //   ),
-                //   child: Container(
-                //     margin: const EdgeInsets.symmetric(
-                //       vertical: 16.0,
-                //     ),
-                //     child: Text('Terms of Service | Privacy Policy'),
-                //   ),
-                // ),
+                BuildSideBar(),
+                
               ],
             ),
           ),
@@ -244,17 +123,17 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Scaffold(
         key: _scaffoldKey,
-        // drawer: SideMenu(),
         body: Column(
           children: [
             Container(
               child: _homeHeader(screenwidth, context, _scaffoldKey,
                   _advancedDrawerController, _handleMenuButtonPressed),
             ),
-            Container(
-              child: _buildPlaylistAndSongs(screenwidth),
+            BuildPlaylist(),
+            SizedBox(
+              height: screenwidth / 18.60,
             ),
-            //  _buildBottomBar(),
+            //BuildSong(),
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -263,61 +142,59 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () {},
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: _buildBottomBar(screenwidth),
+        bottomNavigationBar: BuildBottomBar(),
       ),
     );
   }
-
-//SchedulerBinding.instance.addPostFrameCallback((_) {
 
   // Your Code Here
 
-  _buildBottomBar(double screenwidth) {
-    return BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Row(
-            children: [
-              BottomBarItem(tabs[0], Icons.home, selectedPosition == 0, () {
-                setState(() {
-                  selectedPosition = 0;
-                });
-              }),
-              SizedBox(
-                width: screenwidth / 7.13,
-              ),
-              BottomBarItem(tabs[1], Icons.tv, selectedPosition == 1, () {
-                setState(() {
-                  selectedPosition = 1;
-                });
-              }),
-            ],
-          ),
-          Row(
-            children: [
-              BottomBarItem(tabs[2], Icons.radio, selectedPosition == 2, () {
-                setState(() {
-                  selectedPosition = 2;
-                });
-              }),
-              SizedBox(
-                width: screenwidth / 12.13,
-              ),
-              BottomBarItem(tabs[3], Icons.notifications, selectedPosition == 3,
-                  () {
-                setState(() {
-                  selectedPosition = 3;
-                });
-              })
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
+//   _buildBottomBar(double screenwidth) {
+//     return BottomAppBar(
+//       shape: const CircularNotchedRectangle(),
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: <Widget>[
+//           Row(
+//             children: [
+//               BottomBarItem(tabs[0], Icons.home, selectedPosition == 0, () {
+//                 setState(() {
+//                   selectedPosition = 0;
+//                 });
+//               }),
+//               SizedBox(
+//                 width: screenwidth / 7.13,
+//               ),
+//               BottomBarItem(tabs[1], Icons.tv, selectedPosition == 1, () {
+//                 setState(() {
+//                   selectedPosition = 1;
+//                 });
+//               }),
+//             ],
+//           ),
+//           Row(
+//             children: [
+//               BottomBarItem(tabs[2], Icons.radio, selectedPosition == 2, () {
+//                 setState(() {
+//                   selectedPosition = 2;
+//                 });
+//               }),
+//               SizedBox(
+//                 width: screenwidth / 12.13,
+//               ),
+//               BottomBarItem(tabs[3], Icons.notifications, selectedPosition == 3,
+//                   () {
+//                 setState(() {
+//                   selectedPosition = 3;
+//                 });
+//               })
+//             ],
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 Widget _homeHeader(
     double screenwidth,
@@ -397,14 +274,14 @@ Widget _homeHeader(
                               "PLAY",
                               //textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Colors.red,
+                                color: primaryColor,
                                 fontSize: screenwidth / 42.8,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                             Icon(
-                              Icons.play_arrow_outlined,
-                              color: Colors.red,
+                              Icons.play_arrow_rounded,
+                              color: primaryColor,
                               size: screenwidth / 23.777,
                             ),
                           ],
@@ -422,8 +299,8 @@ Widget _homeHeader(
                       ),
                       Container(
                         child: Icon(
-                          Icons.share_outlined,
-                          color: Colors.red,
+                          Icons.share,
+                          color: primaryColor,
                           size: screenwidth / 23.777,
                         ),
                         decoration: BoxDecoration(
@@ -486,115 +363,93 @@ Widget _homeHeader(
   );
 }
 
-Widget _buildPlaylistAndSongs(double screenwidth) {
-  return Column(
-    children: [
-      Container(
-        height: screenwidth / 3.50,
-        width: screenwidth,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: playlists.length,
-          itemBuilder: (context, index) => _buildPlaylistItem(
-            image: playlists[index].image,
-            title: playlists[index].playlistName,
-            id: playlists[index].id,
-            screenwidth: screenwidth,
-           
-          ),
-        ),
-      ),
-      SizedBox(
-        height: screenwidth / 18.60,
-      ),
-      Container(
-        alignment: Alignment.centerLeft,
-        margin: EdgeInsets.only(left: screenwidth / 30),
-        child: Text(
-          "Top Tracks",
-          style: TextStyle(
-            fontSize: screenwidth / 26.75,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      Container(
-        // margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-        height: screenwidth / 1.90,
-        width: screenwidth / 1.05,
-        child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: songs.length,
-          itemBuilder: (context, index) => _buildSonglistItem(
-            image: songs[index].image,
-            songPath: songs[index].songPath,
-            title: songs[index].songName,
-            subtitle: songs[index].artist,            
-            time: songs[index].time, 
-            id: songs[index].id,
-            screenwidth: screenwidth,
-            context: context,
-          ),
-        ),
-      )
-    ],
-  );
-}
+// Widget _buildPlaylistAndSongs(double screenwidth, Stream playlistDataStream, BuildContext context) {
+//   //var playlistDataStream;
+//   return  StreamBuilder(
+//     stream: playlistDataStream,
+//     builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+//       return snapshot == null
+//                 ? Center(
+//                     child: CircularProgressIndicator(),
+//                   )
+//                 : snapshot.data == null
+//                     ? Center(
+//                         child: CircularProgressIndicator(),
+//                       )
+//                     : ListView(
+//                             children: List.generate(
+//                               snapshot.data!.docs.length,
+//                               (index) => _buildPlaylistItem(
+//                                 screenwidth: screenwidth,
+//                                 playlistName: (snapshot.data!.docs[index].data()
+//                                     as Map)["playlistName"],
+//                                 playlistImage: (snapshot.data!.docs[index].data()
+//                                     as Map)["playlistImage"]
+//                                 // taskTime: (snapshot.data!.docs[index].data()
+//                                 //     as Map)["timeOfUpload"],
+//                               )
+//                               )
+//                             ); 
+//     },
+//   );
+// }
 
-Widget _buildPlaylistItem(
-    {required String title,
-    required String image,
-    required double screenwidth,
-    required int id}) {
-  return Container(
-    margin: EdgeInsets.only(
-      left: id == 1 ? screenwidth / 30.7 : 0,
-      right: screenwidth / 30.7,
-    ),
-    //margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-    width: screenwidth / 2.90,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(screenwidth / 21.4),
-        image: DecorationImage(image: AssetImage(image), fit: BoxFit.fill)),
-    child: Align(
-      alignment: Alignment.bottomCenter,
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Text(
-              title,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 10),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
+// Widget _buildPlaylistItem(
+//     {required dynamic playlistName,
+//     required dynamic playlistImage,
+//    // required double screenwidth,
+//    // required int playlistId, 
+//     dynamic screenwidth}) {
+//   return Container(
+//     margin: EdgeInsets.only(
+//       left: screenwidth / 30.7 ,
+//       right: screenwidth / 30.7,
+//     ),
+//     //margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+//     width: screenwidth / 2.90,
+//     decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(screenwidth / 21.4),
+//         image: DecorationImage(image: AssetImage(playlistImage), fit: BoxFit.fill)),
+//     child: Align(
+//       alignment: Alignment.bottomCenter,
+//       child: Row(
+//         children: [
+//           Padding(
+//             padding: const EdgeInsets.all(12.0),
+//             child: Text(
+//               playlistName,
+//               style: TextStyle(
+//                   color: Colors.white,
+//                   fontWeight: FontWeight.bold,
+//                   fontSize: 10),
+//             ),
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+// }
 
 Widget _buildSonglistItem(
-    {required String image,
-    required String title,
-    required String subtitle,
+    {required String songImage,
+    required String songName,
+    required String songArtist,
     required double screenwidth,
-    required String time,
-    required BuildContext context, 
-    required int id, 
-    required String songPath}) {
+    required String songTime,
+    required int songId, 
+    required String songPath,
+    required BuildContext context 
+    }) {
       //String img = image;
   return GestureDetector(
     onTap: () {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: 
           (context) => PlayerScreen(
-            id: id, 
-            songImage: image, 
-            artistName: subtitle, 
-            songName: title,
+            songId: songId, 
+            songImage: songImage, 
+            songArtist: songArtist, 
+            songName: songName,
             songPath: songPath,
             )));
     },
@@ -603,29 +458,30 @@ Widget _buildSonglistItem(
         height: screenwidth / 8.30,
         width: screenwidth / 7.20,
         decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(image), fit: BoxFit.fill),
+            image: DecorationImage(image: AssetImage(songImage), fit: BoxFit.fill),
             borderRadius: BorderRadius.circular(screenwidth / 142.67)),
       ),
       title: Text(
-        title,
+        songName,
         style: TextStyle(
           fontSize: screenwidth / 30.57,
           fontWeight: FontWeight.bold,
         ),
       ),
       subtitle: Text(
-        subtitle,
+        songArtist,
         style: TextStyle(
           fontSize: screenwidth / 35.667,
           fontWeight: FontWeight.w400,
         ),
       ),
       trailing: Text(
-        time,
+        songTime,
         style: TextStyle(
           fontSize: screenwidth / 35.667,
         ),
       ),
     ),
   );
+}
 }

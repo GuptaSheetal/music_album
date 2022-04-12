@@ -1,5 +1,6 @@
 import 'package:carousel_pro_nullsafety/carousel_pro_nullsafety.dart';
 import 'package:first_app/constants/constants.dart';
+import 'package:first_app/screens/auth_screen/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -73,16 +74,18 @@ class _SplashScreenState extends State<SplashScreen> {
                         ),
                         ),
                     ),
-                    SizedBox(
-                      height: screenwidth / 5.80,
+                    Expanded(
+                      child: SizedBox(
+                        height: screenwidth / 5.80,
+                      ),
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => HomeScreen()));
+                          builder: (context) => LoginScreen()));
                             },
                       child: Container(
-                        margin: EdgeInsets.fromLTRB(180, 0, 20, 0),
+                        margin: EdgeInsets.fromLTRB(180, 0, 20, 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,                  
                           children: [

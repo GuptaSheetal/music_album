@@ -1,8 +1,66 @@
 import 'package:first_app/constants/constants.dart';
 import 'package:flutter/material.dart';
 
+class BuildBottomBar extends StatefulWidget {
+  BuildBottomBar({Key? key}) : super(key: key);
+
+  @override
+  State<BuildBottomBar> createState() => _BuildBottomBarState();
+}
+
+final tabs = ['Home', 'TV', 'Radio', 'Notification'];
+int selectedPosition = 0;
+class _BuildBottomBarState extends State<BuildBottomBar> {
+  @override
+  Widget build(BuildContext context) {
+    double screenwidth = MediaQuery.of(context).size.width;
+    return BottomAppBar(
+      shape: const CircularNotchedRectangle(),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Row(
+            children: [
+              BottomBarItem(tabs[0], Icons.home, selectedPosition == 0, () {
+                setState(() {
+                  selectedPosition = 0;
+                });
+              }),
+              SizedBox(
+                width: screenwidth / 7.13,
+              ),
+              BottomBarItem(tabs[1], Icons.tv, selectedPosition == 1, () {
+                setState(() {
+                  selectedPosition = 1;
+                });
+              }),
+            ],
+          ),
+          Row(
+            children: [
+              BottomBarItem(tabs[2], Icons.radio, selectedPosition == 2, () {
+                setState(() {
+                  selectedPosition = 2;
+                });
+              }),
+              SizedBox(
+                width: screenwidth / 12.13,
+              ),
+              BottomBarItem(tabs[3], Icons.notifications, selectedPosition == 3,
+                  () {
+                setState(() {
+                  selectedPosition = 3;
+                });
+              })
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
 class BottomBarItem extends StatelessWidget {
-  //const BottomBarItem({Key? key}) : super(key: key);
 
   final String text;
   final IconData icon;

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "938883942746",
+    "project_id": "music-app-daa35",
+    "storage_bucket": "music-app-daa35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:938883942746:android:61238f7d80a740205e0b63",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "938883942746-3rktfcuqafeha9iqii08prpmdptqv4pl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBovv11LMYkXif_Y5qESPv2Sl30Snv7OBs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "938883942746-3rktfcuqafeha9iqii08prpmdptqv4pl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

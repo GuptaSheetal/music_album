@@ -1,39 +1,39 @@
 class Playlist {
   final String playlistName;
-  final String image;
-  final int id;
+  final String playlistImage;
+  final int playlistId;
 
   Playlist(
      {required this.playlistName, 
-     required this.image, 
-     required this.id}); 
+     required this.playlistImage, 
+     required this.playlistId}); 
 }
 
 List<Playlist> playlists = [
   Playlist(
     playlistName : "Party Songs", 
-    image: "assets/images/playlist/party.jpg", 
-    id: 1
+    playlistImage: "assets/images/playlist/party.jpg", 
+    playlistId: 1
   ),
   Playlist(
     playlistName : "Romantic Songs", 
-    image: "assets/images/playlist/romantic.jpg", 
-    id: 2
+    playlistImage: "assets/images/playlist/romantic.jpg", 
+    playlistId: 2
   ),
   Playlist(
     playlistName : "Punjabi Songs", 
-    image: "assets/images/playlist/punjabi.jpg", 
-    id: 3
+    playlistImage: "assets/images/playlist/punjabi.jpg", 
+    playlistId: 3
   ),
   Playlist(
     playlistName : "Sufi Songs", 
-    image: "assets/images/playlist/sufi.jpg", 
-    id: 4
+    playlistImage: "assets/images/playlist/sufi.jpg", 
+    playlistId: 4
   ),
   Playlist(
     playlistName : "Friendship Songs", 
-    image: "assets/images/playlist/friendship.jpg", 
-    id: 5
+    playlistImage: "assets/images/playlist/friendship.jpg", 
+    playlistId: 5
   ),
   // Playlist(
   //   playlistName : "Holi Songs", 
