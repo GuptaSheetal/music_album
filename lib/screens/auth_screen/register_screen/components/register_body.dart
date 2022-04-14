@@ -2,8 +2,10 @@
 
 import 'package:first_app/constants/constants.dart';
 import 'package:first_app/screens/auth_screen/register_screen/components/register_background.dart';
+import 'package:first_app/screens/auth_screen/register_screen/components/social_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_tabler_icons/flutter_tabler_icons.dart';
 
 class RegisterBody extends StatefulWidget {
   RegisterBody({Key? key}) : super(key: key);
@@ -24,7 +26,7 @@ class _RegisterBodyState extends State<RegisterBody> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("SIGNUP",
+            Text("SIGN UP",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: screenwidth/20,
@@ -37,8 +39,13 @@ class _RegisterBodyState extends State<RegisterBody> {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "Enter Name",
+                  hintStyle: TextStyle(
+                    fontSize: screenwidth/25,
+                    //color: Colors.white
+                  ),
                   border: InputBorder.none,
                   icon: Icon(Icons.person,
+                  size: screenwidth/18,
                    // color: primaryColor,
                   )
                 ),
@@ -47,8 +54,13 @@ class _RegisterBodyState extends State<RegisterBody> {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "Enter Email",
+                  hintStyle: TextStyle(
+                    fontSize: screenwidth/25,
+                    //color: Colors.white
+                  ),
                   border: InputBorder.none,
                   icon: Icon(Icons.mail,
+                  size: screenwidth/18,
                    // color: primaryColor,
                   )
                 ),
@@ -58,11 +70,13 @@ class _RegisterBodyState extends State<RegisterBody> {
                 obscureText: _hidePassword,
                 decoration: InputDecoration(
                   hintText: "Enter Password",
-                  // hintStyle: TextStyle(
-                  //   color: Colors.white
-                  // ),
+                  hintStyle: TextStyle(
+                    fontSize: screenwidth/25,
+                    //color: Colors.white
+                  ),
                   border: InputBorder.none,
                   icon: Icon(Icons.lock,
+                  size: screenwidth/18,
                     //color: primaryColor,
                   ),
                   suffixIcon: IconButton(
@@ -72,15 +86,16 @@ class _RegisterBodyState extends State<RegisterBody> {
                       });
                     } , 
                     icon: _hidePassword 
-                            ? Icon(Icons.visibility)
-                            : Icon(Icons.visibility_off)),
+                            ? Icon(Icons.visibility,size: screenwidth/18,)
+                            : Icon(Icons.visibility_off, size: screenwidth/18,),
+                  ),
                 ),
                 
               ),),
               Container(
                 //alignment: Alignment.center,
-                margin: EdgeInsets.fromLTRB(0, screenwidth/30, 0, screenwidth/100),
-                height: screenwidth/10,
+                margin: EdgeInsets.fromLTRB(0, screenwidth/25, 0, screenwidth/90),
+                height: screenwidth/9,
                 width: screenwidth/2,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(screenwidth/2),
@@ -104,7 +119,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                 children: [
                   Text(
                     "Already have an Account? ",
-                    style: TextStyle(color: primaryColor),
+                    style: TextStyle(color: primaryColor,fontSize: screenwidth/30),
                   ),
                   Text(
                     "Login",
@@ -112,6 +127,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                       fontWeight: FontWeight.bold,
                       color: primaryColor,
                       fontStyle: FontStyle.italic,
+                      fontSize: screenwidth/30,
                       decoration: TextDecoration.underline,
                     ),
                   )
@@ -137,19 +153,17 @@ class _RegisterBodyState extends State<RegisterBody> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(screenwidth/25),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 2,
-                        color: primaryColor,
-                      ),
-                      //borderRadius: BorderRadius.circular(screenwidth/18)
-                      shape: BoxShape.circle,
-                    ),
-                    child: SvgPicture.asset("assets/images/auth_images/facebook.svg",
-                    height: screenwidth/18,
-                    width: screenwidth/18),
+                  SocialIcons(screenwidth: screenwidth, 
+                    iconSrc: ("assets/images/auth_images/facebook.png"),
+                    onPress: () { },
+                  ),
+                  SocialIcons(screenwidth: screenwidth, 
+                    iconSrc: ("assets/images/auth_images/google_plus.png"), 
+                    onPress: () { },
+                  ),
+                  SocialIcons(screenwidth: screenwidth, 
+                    iconSrc: ("assets/images/auth_images/twitter.png"), 
+                    onPress: () { },
                   ),
                 ],
               ),
@@ -182,12 +196,11 @@ class TextFieldContainer extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(0, screenwidth/50, 0, 0),
       padding: EdgeInsets.symmetric(horizontal: screenwidth/30 ),
       width: screenwidth/1.10,
-      height: screenwidth/9,
+      height: screenwidth/8,
       decoration: BoxDecoration(
         // AF7AC5
         // D2B4DE
-        //DFC3F5
-        
+        //DFC3F5       
         color: Color(0xFFDFC3F5),
         borderRadius: BorderRadius.circular(screenwidth/10),
       ),

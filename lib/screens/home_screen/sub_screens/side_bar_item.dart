@@ -9,7 +9,7 @@ class BuildSideBar extends StatefulWidget {
   State<BuildSideBar> createState() => _BuildSideBarState();
 }
 
-final tabs = ['Songs', 'Album', 'Artist', 'Youtube', 'Favourite','Recent History','Download Items','Local Files','Sign Out'];
+final tabs = ['Songs', 'Album', 'Artist', 'Favourite','Recent History','Sign Out'];
 int selectedPosition = 0;
 
 class _BuildSideBarState extends State<BuildSideBar> {
@@ -42,7 +42,7 @@ class _BuildSideBarState extends State<BuildSideBar> {
         SizedBox(
           height: screenwidth / 16.13,
         ),
-        SideBarItem(tabs[3], Icons.smart_display_outlined, selectedPosition == 3, () {
+        SideBarItem(tabs[3], Icons.favorite, selectedPosition == 3, () {
             setState(() {
               selectedPosition = 3;
             });
@@ -50,41 +50,17 @@ class _BuildSideBarState extends State<BuildSideBar> {
         SizedBox(
           height: screenwidth / 16.13,
         ),
-        SideBarItem(tabs[4], Icons.favorite, selectedPosition == 4, () {
+        SideBarItem(tabs[4], Icons.history, selectedPosition == 4, () {
             setState(() {
               selectedPosition = 4;
             });
-        }),
-        SizedBox(
-          height: screenwidth / 16.13,
-        ),
-        SideBarItem(tabs[5], Icons.history, selectedPosition == 5, () {
-            setState(() {
-              selectedPosition = 5;
-            });
-        }),
-        SizedBox(
-          height: screenwidth / 16.13,
-        ),
-        SideBarItem(tabs[6], Icons.download, selectedPosition == 6, () {
-            setState(() {
-              selectedPosition = 6;
-            });
-        }),
-        SizedBox(
-          height: screenwidth / 16.13,
-        ),
-        SideBarItem(tabs[7], Icons.folder_open, selectedPosition == 7, () {
-            setState(() {
-              selectedPosition = 7;
-            });
-        }),
+        }),     
         SizedBox(
           height: screenwidth / 6.13,
         ),
-        SideBarItem(tabs[8], Icons.logout, selectedPosition == 8, () {
+        SideBarItem(tabs[5], Icons.logout, selectedPosition == 5, () {
             setState(() {
-              selectedPosition = 8;
+              selectedPosition = 5;
             });
         }),
       ],

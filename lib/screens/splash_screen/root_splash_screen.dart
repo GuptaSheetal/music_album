@@ -25,32 +25,46 @@ class _RootSplashScreenState extends State<RootSplashScreen> {
     double screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(child: Container()),
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/app_logo.gif"),
-                  fit: BoxFit.fill,
+        child: Container(
+          // decoration: BoxDecoration(
+          //   gradient: LinearGradient(
+          //     begin: Alignment.topLeft,
+          //     end: Alignment.bottomRight,
+          //     colors: <Color>[
+          //         Color(0xFFdec9e9),
+          //         Color(0xFFc77dff),
+          //       ]
+          //     )
+          // ),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              Expanded(child: Container()),
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/app_logo.gif"),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                height: screenwidth / 2,
+                width: screenwidth / 1.50,
+              ),
+              Text(
+                "Music Album",
+                style: TextStyle(
+                  color: primaryColor,
+                  fontSize: screenwidth / 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              height: screenwidth / 2,
-              width: screenwidth / 1.50,
-            ),
-            Text(
-              "Music Album",
-              style: TextStyle(
-                color: primaryColor,
-                fontSize: screenwidth / 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Expanded(
-              child: Container(),
-              flex: 3,
-            )
-          ],
+              Expanded(
+                child: Container(),
+                flex: 3,
+              )
+            ],
+          ),
         ),
       ),
     );

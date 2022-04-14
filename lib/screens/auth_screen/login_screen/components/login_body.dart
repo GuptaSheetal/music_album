@@ -37,8 +37,13 @@ class _LoginBodyState extends State<LoginBody> {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "Enter Email",
+                  hintStyle: TextStyle(
+                    fontSize: screenwidth/25,
+                    //color: Colors.white
+                  ),
                   border: InputBorder.none,
                   icon: Icon(Icons.mail,
+                  size: screenwidth/18,
                    // color: primaryColor,
                   )
                 ),
@@ -48,11 +53,16 @@ class _LoginBodyState extends State<LoginBody> {
                 obscureText: _hidePassword,
                 decoration: InputDecoration(
                   hintText: "Enter Password",
+                  hintStyle: TextStyle(
+                    fontSize: screenwidth/25,
+                    //color: Colors.white
+                  ),
                   // hintStyle: TextStyle(
                   //   color: Colors.white
                   // ),
                   border: InputBorder.none,
                   icon: Icon(Icons.lock,
+                  size: screenwidth/18,
                     //color: primaryColor,
                   ),
                   suffixIcon: IconButton(
@@ -62,15 +72,29 @@ class _LoginBodyState extends State<LoginBody> {
                       });
                     } , 
                     icon: _hidePassword 
-                            ? Icon(Icons.visibility)
-                            : Icon(Icons.visibility_off)),
+                            ? Icon(Icons.visibility, size: screenwidth/18,)
+                            : Icon(Icons.visibility_off, size: screenwidth/18,)),
                 ),
                 
               ),),
               Container(
+                margin: EdgeInsets.fromLTRB(0, screenwidth/80, screenwidth/40, 0),
+                alignment: Alignment.centerRight,
+                child: Text("Forget Password?",
+                //textAlign: TextAlign.end,
+                style: TextStyle(
+                  fontSize: screenwidth/25,
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.purple,
+                  decoration: TextDecoration.underline,
+                ),),
+              ),
+              Container(
                 //alignment: Alignment.center,
                 margin: EdgeInsets.fromLTRB(0, screenwidth/15, 0, screenwidth/70),
-                width: screenwidth/1.80,
+                height: screenwidth/9,
+                width: screenwidth/2,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(screenwidth/2),
                   child: FlatButton(
@@ -93,7 +117,10 @@ class _LoginBodyState extends State<LoginBody> {
                 children: [
                   Text(
                     "Don't have an Account? ",
-                    style: TextStyle(color: primaryColor),
+                    style: TextStyle(
+                      color: primaryColor,
+                      fontSize: screenwidth/30
+                      ),
                   ),
                   Text(
                     "Sign Up",
@@ -101,6 +128,7 @@ class _LoginBodyState extends State<LoginBody> {
                       fontWeight: FontWeight.bold,
                       color: primaryColor,
                       fontStyle: FontStyle.italic,
+                      fontSize: screenwidth/30,
                       decoration: TextDecoration.underline,
                     ),
                   )
@@ -124,14 +152,14 @@ class TextFieldContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.fromLTRB(0, screenwidth/50, 0, 9),
-      padding: EdgeInsets.symmetric(horizontal: screenwidth/30 , vertical: screenwidth/500),
+      margin: EdgeInsets.fromLTRB(0, screenwidth/50, 0, 0),
+      padding: EdgeInsets.symmetric(horizontal: screenwidth/30 ),
       width: screenwidth/1.10,
+      height: screenwidth/8,
       decoration: BoxDecoration(
         // AF7AC5
         // D2B4DE
-        //DFC3F5
-        
+        //DFC3F5        
         color: Color(0xFFDFC3F5),
         borderRadius: BorderRadius.circular(screenwidth/10),
       ),

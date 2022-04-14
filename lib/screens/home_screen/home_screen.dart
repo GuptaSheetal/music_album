@@ -3,9 +3,12 @@ import 'dart:core';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first_app/constants/constants.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:first_app/screens/Notification_screen/notification_screen.dart';
+import 'package:first_app/screens/Radio_screen/radio_screen.dart';
 import 'package:first_app/screens/home_screen/sub_screens/build_playlist.dart';
 import 'package:first_app/screens/home_screen/sub_screens/side_bar_item.dart';
 import 'package:first_app/screens/player_screen/player_screen.dart';
+import 'package:first_app/screens/tv_screen/tv_screen.dart';
 import 'package:first_app/services/playlist_services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:first_app/models/playlist.dart';
@@ -24,24 +27,17 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-//final tabs = ['Home', 'TV', 'Radio', 'Notification'];
-
 class _HomeScreenState extends State<HomeScreen> {
+
   final _drawerController = ZoomDrawerController();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final _advancedDrawerController = AdvancedDrawerController();
-  int selectedPosition = 0;
 
   void _handleMenuButtonPressed() {
     _advancedDrawerController.showDrawer();
   }
 
   PlaylistServices playlistServices = PlaylistServices();
-
-@override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +48,12 @@ class _HomeScreenState extends State<HomeScreen> {
       animationCurve: Curves.easeInOut,
       animationDuration: const Duration(milliseconds: 300),
       animateChildDecoration: true,
+      openRatio: 0.5,
       rtlOpening: false,
       disabledGestures: false,
-      childDecoration: BoxDecoration(       
-        borderRadius: BorderRadius.all(Radius.circular(16)),
+      childDecoration: BoxDecoration(  
+        border: Border.all(),
+       // borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       drawer: SafeArea(
         child: Container(
@@ -67,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Container(
                   margin: EdgeInsets.fromLTRB(
-                      0, screenwidth / 5.74, 110, screenwidth / 7.94),
+                      0, screenwidth / 5.74, 0, screenwidth / 7.94),
                   decoration: BoxDecoration(
                     color: primaryColor,
                     borderRadius: BorderRadius.only(
@@ -114,8 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: screenwidth / 5.95,
                   width: screenwidth / 1.20,
                 ),
-                BuildSideBar(),
-                
+                BuildSideBar(), 
               ],
             ),
           ),
@@ -133,68 +130,12 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: screenwidth / 18.60,
             ),
-            //BuildSong(),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: primaryColor,
-          child: Icon(Icons.rocket),
-          onPressed: () {},
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: BuildBottomBar(),
       ),
     );
   }
 
-  // Your Code Here
-
-//   _buildBottomBar(double screenwidth) {
-//     return BottomAppBar(
-//       shape: const CircularNotchedRectangle(),
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//         children: <Widget>[
-//           Row(
-//             children: [
-//               BottomBarItem(tabs[0], Icons.home, selectedPosition == 0, () {
-//                 setState(() {
-//                   selectedPosition = 0;
-//                 });
-//               }),
-//               SizedBox(
-//                 width: screenwidth / 7.13,
-//               ),
-//               BottomBarItem(tabs[1], Icons.tv, selectedPosition == 1, () {
-//                 setState(() {
-//                   selectedPosition = 1;
-//                 });
-//               }),
-//             ],
-//           ),
-//           Row(
-//             children: [
-//               BottomBarItem(tabs[2], Icons.radio, selectedPosition == 2, () {
-//                 setState(() {
-//                   selectedPosition = 2;
-//                 });
-//               }),
-//               SizedBox(
-//                 width: screenwidth / 12.13,
-//               ),
-//               BottomBarItem(tabs[3], Icons.notifications, selectedPosition == 3,
-//                   () {
-//                 setState(() {
-//                   selectedPosition = 3;
-//                 });
-//               })
-//             ],
-//           )
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 Widget _homeHeader(
     double screenwidth,
