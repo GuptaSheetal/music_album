@@ -1,21 +1,21 @@
 import 'package:first_app/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-class TabBarWidget extends StatefulWidget {
+class BuildBottomBar extends StatefulWidget {
   final int index;
   final ValueChanged<int> onChangedTab;
 
-  TabBarWidget({
+  BuildBottomBar({
     Key? key, 
     required this.index, 
     required this.onChangedTab
     }) : super(key: key);
 
   @override
-  State<TabBarWidget> createState() => _TabBarWidgetState();
+  State<BuildBottomBar> createState() => _BuildBottomBarState();
 }
 
-class _TabBarWidgetState extends State<TabBarWidget> {
+class _BuildBottomBarState extends State<BuildBottomBar> {
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;

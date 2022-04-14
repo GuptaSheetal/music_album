@@ -1,6 +1,5 @@
 import 'package:first_app/screens/auth_screen/login_screen/login_screen.dart';
 import 'package:first_app/screens/auth_screen/register_screen/register_screen.dart';
-import 'package:first_app/screens/home_screen/bottom_bar_item.dart';
 import 'package:first_app/screens/home_screen/home_screen.dart';
 import 'package:first_app/screens/home_screen/root_home_screen.dart';
 import 'package:first_app/screens/player_screen/player_screen.dart';

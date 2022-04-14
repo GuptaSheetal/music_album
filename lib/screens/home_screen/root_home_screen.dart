@@ -2,7 +2,7 @@ import 'package:first_app/constants/constants.dart';
 import 'package:first_app/screens/Notification_screen/notification_screen.dart';
 import 'package:first_app/screens/Radio_screen/radio_screen.dart';
 import 'package:first_app/screens/home_screen/home_screen.dart';
-import 'package:first_app/screens/home_screen/sub_screens/tab_bar_widget.dart';
+import 'package:first_app/screens/home_screen/sub_screens/build_bottom_bar.dart';
 import 'package:first_app/screens/tv_screen/tv_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +29,7 @@ class _RootHomeScreenState extends State<RootHomeScreen> {
     double screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: pages[index],
-      bottomNavigationBar: TabBarWidget(
+      bottomNavigationBar: BuildBottomBar(
         index: index,
         onChangedTab: onChangedTab,
       ),
