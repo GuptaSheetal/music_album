@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   PlaylistServices playlistServices = PlaylistServices();
 
-@override
+  @override
   void initState() {
     super.initState();
   }
@@ -54,8 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
       animateChildDecoration: true,
       rtlOpening: false,
       disabledGestures: false,
-      childDecoration: BoxDecoration(       
-        borderRadius: BorderRadius.all(Radius.circular(16)),
+      // openRatio: 0.5,
+      childDecoration: BoxDecoration(
+        // borderRadius: BorderRadius.all(Radius.circular(16)),
+        border: Border.all(),
       ),
       drawer: SafeArea(
         child: Container(
@@ -115,7 +117,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: screenwidth / 1.20,
                 ),
                 BuildSideBar(),
-                
               ],
             ),
           ),
@@ -196,172 +197,172 @@ class _HomeScreenState extends State<HomeScreen> {
 //   }
 // }
 
-Widget _homeHeader(
-    double screenwidth,
-    BuildContext context,
-    GlobalKey<ScaffoldState> _scaffoldKey,
-    AdvancedDrawerController advancedDrawerController,
-    VoidCallback _handleMenuButtonPressed) {
-  return Column(
-    children: [
-      Container(
-        child: Row(
-          children: [
-            Container(
-              // alignment: Alignment.topLeft,
-              margin: EdgeInsets.fromLTRB(20, 30, 30, 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IconButton(
-                    alignment: Alignment.centerLeft,
-                    onPressed: _handleMenuButtonPressed,
-                    icon: ValueListenableBuilder<AdvancedDrawerValue>(
-                      valueListenable: advancedDrawerController,
-                      builder: (_, value, __) {
-                        return AnimatedSwitcher(
-                          duration: Duration(milliseconds: 250),
-                          child: Icon(
-                            value.visible ? Icons.clear : Icons.menu,
-                            key: ValueKey<bool>(value.visible),
-                            color: Colors.white,
-                          ),
-                        );
-                      },
+  Widget _homeHeader(
+      double screenwidth,
+      BuildContext context,
+      GlobalKey<ScaffoldState> _scaffoldKey,
+      AdvancedDrawerController advancedDrawerController,
+      VoidCallback _handleMenuButtonPressed) {
+    return Column(
+      children: [
+        Container(
+          child: Row(
+            children: [
+              Container(
+                // alignment: Alignment.topLeft,
+                margin: EdgeInsets.fromLTRB(20, 30, 30, 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      alignment: Alignment.centerLeft,
+                      onPressed: _handleMenuButtonPressed,
+                      icon: ValueListenableBuilder<AdvancedDrawerValue>(
+                        valueListenable: advancedDrawerController,
+                        builder: (_, value, __) {
+                          return AnimatedSwitcher(
+                            duration: Duration(milliseconds: 250),
+                            child: Icon(
+                              value.visible ? Icons.clear : Icons.menu,
+                              key: ValueKey<bool>(value.visible),
+                              color: Colors.white,
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  Text(
-                    "#TRENDING",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: screenwidth / 42.8,
-                      fontWeight: FontWeight.w400,
+                    Text(
+                      "#TRENDING",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: screenwidth / 42.8,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: screenwidth / 61.14,
-                  ),
-                  Text(
-                    "Akcent feat Lidia\nBuble...",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: screenwidth / 15.28,
-                      fontWeight: FontWeight.bold,
+                    SizedBox(
+                      height: screenwidth / 61.14,
                     ),
-                  ),
-                  SizedBox(
-                    height: screenwidth / 61.14,
-                  ),
-                  Text(
-                    "-Kamelia",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: screenwidth / 26.75,
-                      fontWeight: FontWeight.w500,
+                    Text(
+                      "Akcent feat Lidia\nBuble...",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: screenwidth / 15.28,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: screenwidth / 15.95,
-                  ),
-                  Row(
-                    //mainAxisAlignment: MainAxisAlignment
-                    children: [
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "PLAY",
-                              //textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: primaryColor,
-                                fontSize: screenwidth / 42.8,
-                                fontWeight: FontWeight.w600,
+                    SizedBox(
+                      height: screenwidth / 61.14,
+                    ),
+                    Text(
+                      "-Kamelia",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: screenwidth / 26.75,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(
+                      height: screenwidth / 15.95,
+                    ),
+                    Row(
+                      //mainAxisAlignment: MainAxisAlignment
+                      children: [
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "PLAY",
+                                //textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: primaryColor,
+                                  fontSize: screenwidth / 42.8,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                            ),
-                            Icon(
-                              Icons.play_arrow_rounded,
-                              color: primaryColor,
-                              size: screenwidth / 23.777,
-                            ),
-                          ],
+                              Icon(
+                                Icons.play_arrow_rounded,
+                                color: primaryColor,
+                                size: screenwidth / 23.777,
+                              ),
+                            ],
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.circular(screenwidth / 85.6),
+                          ),
+                          height: screenwidth / 19.45,
+                          width: screenwidth / 6.90,
                         ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius:
-                              BorderRadius.circular(screenwidth / 85.6),
+                        SizedBox(
+                          width: screenwidth / 53.5,
                         ),
-                        height: screenwidth / 19.45,
-                        width: screenwidth / 6.90,
-                      ),
-                      SizedBox(
-                        width: screenwidth / 53.5,
-                      ),
-                      Container(
-                        child: Icon(
-                          Icons.share,
-                          color: primaryColor,
-                          size: screenwidth / 23.777,
+                        Container(
+                          child: Icon(
+                            Icons.share,
+                            color: primaryColor,
+                            size: screenwidth / 23.777,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.circular(screenwidth / 142.666),
+                          ),
+                          height: screenwidth / 19.45,
+                          width: screenwidth / 17.833,
                         ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius:
-                              BorderRadius.circular(screenwidth / 142.666),
-                        ),
-                        height: screenwidth / 19.45,
-                        width: screenwidth / 17.833,
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
+                height: screenwidth / 1.73,
+                width: screenwidth / 1.8,
               ),
-              height: screenwidth / 1.73,
-              width: screenwidth / 1.8,
+              //   Container(
+              //     child: SvgPicture.asset(
+              //       "assets/images/home_image3.svg",
+              //         height: screenwidth/3.5,
+              //         width: screenwidth/80,),
+              //     // height: screenwidth / 2.5,
+              //     // width: screenwidth/5,
+              // ),
+            ],
+          ),
+          decoration: BoxDecoration(
+            // color: primaryColor,
+            image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage("assets/images/home_image4.png"),
             ),
-            //   Container(
-            //     child: SvgPicture.asset(
-            //       "assets/images/home_image3.svg",
-            //         height: screenwidth/3.5,
-            //         width: screenwidth/80,),
-            //     // height: screenwidth / 2.5,
-            //     // width: screenwidth/5,
-            // ),
+          ),
+          height: screenwidth / 1.5,
+          width: screenwidth,
+        ),
+        SizedBox(
+          height: screenwidth / 42.8,
+        ),
+        Row(
+          children: [
+            SizedBox(
+              width: screenwidth / 30,
+            ),
+            Text(
+              "Featured Tracks",
+              //textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: screenwidth / 26.75,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
-        decoration: BoxDecoration(
-          // color: primaryColor,
-          image: DecorationImage(
-            fit: BoxFit.fill,
-            image: AssetImage("assets/images/home_image4.png"),
-          ),
+        SizedBox(
+          height: screenwidth / 36.67,
         ),
-        height: screenwidth / 1.5,
-        width: screenwidth,
-      ),
-      SizedBox(
-        height: screenwidth / 42.8,
-      ),
-      Row(
-        children: [
-          SizedBox(
-            width: screenwidth / 30,
-          ),
-          Text(
-            "Featured Tracks",
-            //textAlign: TextAlign.left,
-            style: TextStyle(
-              fontSize: screenwidth / 26.75,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-      SizedBox(
-        height: screenwidth / 36.67,
-      ),
-    ],
-  );
-}
+      ],
+    );
+  }
 
 // Widget _buildPlaylistAndSongs(double screenwidth, Stream playlistDataStream, BuildContext context) {
 //   //var playlistDataStream;
@@ -389,7 +390,7 @@ Widget _homeHeader(
 //                                 //     as Map)["timeOfUpload"],
 //                               )
 //                               )
-//                             ); 
+//                             );
 //     },
 //   );
 // }
@@ -398,7 +399,7 @@ Widget _homeHeader(
 //     {required dynamic playlistName,
 //     required dynamic playlistImage,
 //    // required double screenwidth,
-//    // required int playlistId, 
+//    // required int playlistId,
 //     dynamic screenwidth}) {
 //   return Container(
 //     margin: EdgeInsets.only(
@@ -430,58 +431,57 @@ Widget _homeHeader(
 //   );
 // }
 
-Widget _buildSonglistItem(
-    {required String songImage,
-    required String songName,
-    required String songArtist,
-    required double screenwidth,
-    required String songTime,
-    required int songId, 
-    required String songPath,
-    required BuildContext context 
-    }) {
-      //String img = image;
-  return GestureDetector(
-    onTap: () {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: 
-          (context) => PlayerScreen(
-            songId: songId, 
-            songImage: songImage, 
-            songArtist: songArtist, 
-            songName: songName,
-            songPath: songPath,
-            )));
-    },
-    child: ListTile(
-      leading: Container(
-        height: screenwidth / 8.30,
-        width: screenwidth / 7.20,
-        decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(songImage), fit: BoxFit.fill),
-            borderRadius: BorderRadius.circular(screenwidth / 142.67)),
-      ),
-      title: Text(
-        songName,
-        style: TextStyle(
-          fontSize: screenwidth / 30.57,
-          fontWeight: FontWeight.bold,
+  Widget _buildSonglistItem(
+      {required String songImage,
+      required String songName,
+      required String songArtist,
+      required double screenwidth,
+      required String songTime,
+      required int songId,
+      required String songPath,
+      required BuildContext context}) {
+    //String img = image;
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => PlayerScreen(
+                  songId: songId,
+                  songImage: songImage,
+                  songArtist: songArtist,
+                  songName: songName,
+                  songPath: songPath,
+                )));
+      },
+      child: ListTile(
+        leading: Container(
+          height: screenwidth / 8.30,
+          width: screenwidth / 7.20,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(songImage), fit: BoxFit.fill),
+              borderRadius: BorderRadius.circular(screenwidth / 142.67)),
+        ),
+        title: Text(
+          songName,
+          style: TextStyle(
+            fontSize: screenwidth / 30.57,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        subtitle: Text(
+          songArtist,
+          style: TextStyle(
+            fontSize: screenwidth / 35.667,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        trailing: Text(
+          songTime,
+          style: TextStyle(
+            fontSize: screenwidth / 35.667,
+          ),
         ),
       ),
-      subtitle: Text(
-        songArtist,
-        style: TextStyle(
-          fontSize: screenwidth / 35.667,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
-      trailing: Text(
-        songTime,
-        style: TextStyle(
-          fontSize: screenwidth / 35.667,
-        ),
-      ),
-    ),
-  );
-}
+    );
+  }
 }

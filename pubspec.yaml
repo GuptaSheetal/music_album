@@ -78,7 +78,6 @@ flutter:
     - assets/images/songs/
     - assets/images/playlist/
     - assets/images/auth_images/
-    - assets/icons/
     - assets/fonts/MulishFont/
 
 

@@ -28,23 +28,20 @@ class _BuildPlaylistState extends State<BuildPlaylist> {
     });
 
     Map firstPlaylistData = await playlistServices.getFirstPlaylist();
-    if(firstPlaylistData.keys.length > 0) {
+    if (firstPlaylistData.keys.length > 0) {
       String pName = firstPlaylistData["playlistName"];
       String pId = firstPlaylistData["playlistId"];
       await getSongData(pName, pId);
       // var data = await songServices.getAllSongs(pId, pName);
     }
-
-
   }
 
   Future<void> getSongData(String pName, String pId) async {
-    await songServices.getSongData(pId,pName ).then((value) {
+    await songServices.getSongData(pId, pName).then((value) {
       setState(() {
         songDataStream = value;
       });
     });
-    
   }
 
   // Future<void> getSong(String pName) async {
@@ -68,127 +65,156 @@ class _BuildPlaylistState extends State<BuildPlaylist> {
     return Column(
       children: [
         StreamBuilder(
-            stream: playlistDataStream,
-            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              return snapshot == null
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : snapshot.data == null
-                      ? Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : snapshot.data!.docs.length == 0
+            stream: songDataStream,
+            builder: (context, AsyncSnapshot<QuerySnapshot> songSnapshot) {
+              return Container(
+                child: StreamBuilder(
+                    stream: playlistDataStream,
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      return snapshot == null
                           ? Center(
-                              child: Text("No data present"),
+                              child: CircularProgressIndicator(),
                             )
-                          : Column(
-                              children: [
-                                Container(
-                                  child: ListView.builder(
-                                    itemCount: snapshot.data!.docs.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (_, index) =>
-                                        _buildPlaylistItem(
-                                      playlistImage: (snapshot.data!.docs
-                                          .toList()[index]
-                                          .data() as Map)["playlistImage"],
-                                      playlistName: (snapshot.data!.docs
-                                          .toList()[index]
-                                          .data() as Map)["playlistName"],
-                                      playlistId: (snapshot.data!.docs
-                                          .toList()[index]
-                                          .data() as Map)["playlistId"],
-                                      screenwidth: screenwidth,
-                                      index: index,
-                                    ),
-                                  ),
-                                  
-                                  height: screenwidth / 3.50,
-                                  width: screenwidth,
-                                ),
-                                StreamBuilder(
-                                                  stream: songDataStream,
-                                                  builder: (context,
-                                                      AsyncSnapshot<
-                                                              QuerySnapshot>
-                                                          songSnapshot) {
-                                                    return songSnapshot == null
-                                                        ? Text("Song snapshot is null")
-                                                        : songSnapshot.data ==
-                                                                null
-                                                            ? Text("Song snapshot.data is null")
-                                                            : songSnapshot
-                                                                        .data!
-                                                                        .docs
-                                                                        .length ==
-                                                                    0
-                                                                ? Text("Song snapshot.data.length is 0")
-                                                                : Column(
-                                                                    children: [
-                                                                      SizedBox(
-                                                                        height: screenwidth /
-                                                                            18.60,
-                                                                      ),
-                                                                      Container(
-                                                                        alignment:
-                                                                            Alignment.centerLeft,
-                                                                        margin: EdgeInsets.only(
-                                                                            left:
-                                                                                screenwidth / 30),
-                                                                        child:
-                                                                            Text(
-                                                                          "Top Tracks",
-                                                                          style:
-                                                                              TextStyle(
-                                                                            fontSize:
-                                                                                screenwidth / 26.75,
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Container(
-                                                                        child: ListView
-                                                                            .builder(
-                                                                          itemCount: songSnapshot
-                                                                              .data!
-                                                                              .docs
-                                                                              .length,
-                                                                          scrollDirection:
-                                                                              Axis.horizontal,
-                                                                          itemBuilder: (_, index) =>
-                                                                              _buildSonglistItem(
-                                                                            songArtist:"Artist",
-                                                                                // (songSnapshot.data!.docs.toList()[index].data() as Map)["songArtist"],
-                                                                            songId:
-                                                                                (songSnapshot.data!.docs.toList()[index].data() as Map)["songId"],
-                                                                            songImage:
-                                                                                (songSnapshot.data!.docs.toList()[index].data() as Map)["songImage"],
-                                                                            songName:
-                                                                                (songSnapshot.data!.docs.toList()[index].data() as Map)["songName"],
-                                                                            songAudio: "Audio",
-                                                                                // (songSnapshot.data!.docs.toList()[index].data() as Map)["songAudio"],
-                                                                            songTime:
-                                                                                "5:00",
-                                                                            index:
-                                                                                index,
-                                                                            screenwidth:
-                                                                                screenwidth,
-                                                                            context:
-                                                                                context,
-                                                                          ),
-                                                                        ),
-                                                                        height: screenwidth /
-                                                                            3.50,
-                                                                        width:
-                                                                            screenwidth,
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                  })
-                              ],
-                            );
+                          : snapshot.data == null
+                              ? Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : snapshot.data!.docs.length == 0
+                                  ? Center(
+                                      child: Text("No data present"),
+                                    )
+                                  : Column(
+                                      children: [
+                                        Container(
+                                          child: ListView.builder(
+                                            itemCount:
+                                                snapshot.data!.docs.length,
+                                            scrollDirection: Axis.horizontal,
+                                            itemBuilder: (_, index) =>
+                                                _buildPlaylistItem(
+                                              playlistImage: (snapshot
+                                                      .data!.docs
+                                                      .toList()[index]
+                                                      .data()
+                                                  as Map)["playlistImage"],
+                                              playlistName: (snapshot.data!.docs
+                                                      .toList()[index]
+                                                      .data()
+                                                  as Map)["playlistName"],
+                                              playlistId: (snapshot.data!.docs
+                                                  .toList()[index]
+                                                  .data() as Map)["playlistId"],
+                                              screenwidth: screenwidth,
+                                              index: index,
+                                            ),
+                                          ),
+                                          height: screenwidth / 3.50,
+                                          width: screenwidth,
+                                        ),
+                                        songSnapshot == null
+                                            ? Text("Song snapshot is null")
+                                            : songSnapshot.data == null
+                                                ? Text(
+                                                    "Song snapshot.data is null")
+                                                : songSnapshot.data!.docs
+                                                            .length ==
+                                                        0
+                                                    ? Text(
+                                                        "Song snapshot.data.length is 0")
+                                                    : Text(
+                                                        "${songSnapshot.data!.docs.length}")
+                                        // Column(
+                                        //     children: [
+                                        //       SizedBox(
+                                        //         height:
+                                        //             screenwidth /
+                                        //                 18.60,
+                                        //       ),
+                                        //       Container(
+                                        //         alignment: Alignment
+                                        //             .centerLeft,
+                                        //         margin: EdgeInsets.only(
+                                        //             left:
+                                        //                 screenwidth /
+                                        //                     30),
+                                        //         child: Text(
+                                        //           "Top Tracks",
+                                        //           style: TextStyle(
+                                        //             fontSize:
+                                        //                 screenwidth /
+                                        //                     26.75,
+                                        //             fontWeight:
+                                        //                 FontWeight
+                                        //                     .bold,
+                                        //           ),
+                                        //         ),
+                                        //       ),
+                                        //       Container(
+                                        //         child: ListView
+                                        //             .builder(
+
+                                        //           itemCount:
+                                        //               songSnapshot
+                                        //                   .data!
+                                        //                   .docs
+                                        //                   .length,
+                                        //           scrollDirection:
+                                        //               Axis.horizontal,
+                                        //           itemBuilder: (_,
+                                        //                   index) =>
+                                        //               _buildSonglistItem(
+                                        //             songArtist:
+                                        //                 "Artist",
+                                        //             // (songSnapshot.data!.docs.toList()[index].data() as Map)["songArtist"],
+                                        //             songId: (songSnapshot
+                                        //                     .data!.docs
+                                        //                     .toList()[
+                                        //                         index]
+                                        //                     .data()
+                                        //                 as Map)["songId"],
+                                        //             songImage: (songSnapshot
+                                        //                     .data!.docs
+                                        //                     .toList()[
+                                        //                         index]
+                                        //                     .data()
+                                        //                 as Map)["songImage"],
+                                        //             songName: (songSnapshot
+                                        //                     .data!.docs
+                                        //                     .toList()[
+                                        //                         index]
+                                        //                     .data()
+                                        //                 as Map)["songName"],
+                                        //             songAudio:
+                                        //                 "Audio",
+                                        //             // (songSnapshot.data!.docs.toList()[index].data() as Map)["songAudio"],
+                                        //             songTime:
+                                        //                 "5:00",
+                                        //             index: index,
+                                        //             screenwidth:
+                                        //                 screenwidth,
+                                        //             context:
+                                        //                 context,
+                                        //           ),
+                                        //         ),
+                                        //         height:
+                                        //             screenwidth /
+                                        //                 3.50,
+                                        //         width: screenwidth,
+                                        //       ),
+                                        //     ],
+                                        //   )
+                                        // StreamBuilder(
+                                        //                   stream: songDataStream,
+                                        //                   builder: (context,
+                                        //                       AsyncSnapshot<
+                                        //                               QuerySnapshot>
+                                        //                           songSnapshot) {
+
+                                        //                   })
+                                      ],
+                                    );
+                    }),
+              );
             }),
       ],
     );
@@ -241,7 +267,7 @@ Widget _buildSonglistItem(
     required double screenwidth,
     required String songTime,
     required BuildContext context,
-    required int songId,
+    required String songId,
     required String songAudio,
     required int index}) {
   return GestureDetector(

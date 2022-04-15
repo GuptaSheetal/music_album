@@ -31,7 +31,7 @@ class _RootSplashScreenState extends State<RootSplashScreen> {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/app_logo.gif"),
+                  image: NetworkImage("https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?fit=crop&format=jpg&crop=4560,2565,x790,y784,safe"),
                   fit: BoxFit.fill,
                 ),
               ),

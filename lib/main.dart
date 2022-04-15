@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'constants/constants.dart';
+import 'screens/splash_screen/root_splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         future: Firebase.initializeApp(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return RegisterScreen();
+            return RootSplashScreen();
           } else {
             return Scaffold(
               body: Center(
