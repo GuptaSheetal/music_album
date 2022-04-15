@@ -1,6 +1,7 @@
 import 'package:first_app/screens/auth_screen/login_screen/login_screen.dart';
 import 'package:first_app/screens/auth_screen/register_screen/register_screen.dart';
 import 'package:first_app/screens/home_screen/home_screen.dart';
+import 'package:first_app/screens/home_screen/root_home_screen.dart';
 import 'package:first_app/screens/player_screen/player_screen.dart';
 import 'package:first_app/screens/side_menu/side_menu.dart';
 import 'package:first_app/screens/splash_screen/root_splash_screen.dart';
@@ -23,9 +24,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: primaryColor,
+          primaryColor: primaryColor,
           scaffoldBackgroundColor: Colors.white,
-          primarySwatch:  const MaterialColor(0xFFB36DEA, {
+          primarySwatch: const MaterialColor(0xFFB36DEA, {
             50: Color.fromRGBO(179, 109, 234, .1),
             100: Color.fromRGBO(179, 109, 234, .2),
             200: Color.fromRGBO(179, 109, 234, .3),
@@ -39,19 +40,18 @@ class MyApp extends StatelessWidget {
           }),
           fontFamily: "Mulish"),
       home: FutureBuilder(
-        future: Firebase.initializeApp(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return RootSplashScreen();
-          } else {
-            return Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }
-        }
-      ),
+          future: Firebase.initializeApp(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return RootSplashScreen();
+            } else {
+              return Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
+          }),
     );
   }
 }
