@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         future: Firebase.initializeApp(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return RootHomeScreen();
+            return RootSplashScreen();
           } else {
             return Scaffold(
               body: Center(
