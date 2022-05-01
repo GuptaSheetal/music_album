@@ -169,13 +169,13 @@ class SideBarItem extends StatelessWidget {
         child: Row(
           //mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Icon(icon, color: isSelected ? primaryColor : Colors.black38,
+            Icon(icon, color: isSelected ? Colors.white : Colors.white38,
             size: screenwidth/14.62 ,),
             SizedBox(
               width: screenwidth/18.13,
             ),
             Text(text, style: TextStyle(
-              color: isSelected ? primaryColor : Colors.black38,
+              color: isSelected ? Colors.white : Colors.white38,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
               fontSize: screenwidth/23.667,
             ),)

@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
                          dotSize: 4.5,
                          dotSpacing: 15.0,
                          dotIncreasedColor: primaryColor,
-                         dotColor: Color.fromARGB(178, 201, 34, 216),
+                         dotColor: Colors.red,
                          indicatorBgPadding: 5.0,
                          dotBgColor: Colors.transparent,
                          dotPosition: DotPosition.bottomCenter,
